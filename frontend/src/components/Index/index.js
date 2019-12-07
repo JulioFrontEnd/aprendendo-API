@@ -26,7 +26,7 @@ export default class Index extends React.Component{
                         <tr className='index-table-field index-table-main'>
                             <th className='index-table-value'>ID</th>
                             <th className='index-table-value'>NAME</th>
-                            <th className='index-table-value'>BORN DATE</th>
+                            <th className='index-table-value'>CPF</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -36,7 +36,7 @@ export default class Index extends React.Component{
                                 <tr className={`index-table-field ${((i.active === 1)?"":"Disable")}`} key={i.id}>
                                     <td className='index-table-value'>{i.id}</td>
                                     <td className='index-table-value'>{i.name}</td>
-                                    <td className='index-table-value'>{i.bornDate}</td>
+                                    <td className='index-table-value'>{i.cpf}</td>
                                 </tr>
                                 
                             );
