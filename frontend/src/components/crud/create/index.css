@@ -1,0 +1,47 @@
+.CreateForm{
+    /* POSITION */
+    position: fixed;
+    left: 50%;
+    top: 2%;
+    transform: translate(-50%,0);
+    width: 70%;
+    /* COURSE */
+    padding: 5%;
+
+    /* style */
+    color: #dfe6e9; 
+    background: #212121;
+}
+
+.CreateForm *{
+    background: #212121;
+    color: #dfe6e9;
+    border: none;
+    font-size: 1.1em;
+}
+
+.CreateForm h3{
+    background: #e17055;
+    padding: 4%;
+    margin-bottom: 4%;
+}
+.input{
+    margin-bottom: 4%;
+}
+
+.CreateBtn{
+    border: 1px solid #e17055;
+    color: #e17055;
+    padding: 2%;
+    cursor: pointer;
+}
+.CreateBtn:hover{
+    background: #e17055;
+    color: #dfe6e9;
+    transition: all .7s;
+}
+.CreateField{
+    border-bottom: 1px solid #e17055;
+    padding:2% 0;
+    margin-right: 4%;
+}
