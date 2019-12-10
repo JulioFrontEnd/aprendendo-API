@@ -1,6 +1,6 @@
 .index-table-value , .index-table-field{
     border: 1px solid #cecece;
-    padding: 1%;
+    padding: 2%;
     background: #212121;
     color: #dfe6e9;
 }
@@ -10,7 +10,7 @@
     font-weight: bold;
 }
 .index-table,.index-table-field{
-    width: 100%;
+    min-width: 100%;
     border-collapse: collapse;
 }
 .index-container{
@@ -18,4 +18,73 @@
 }
 .Disable .index-table-value{
     color: #676767 !important;
+}
+.index-table *{
+    font-size: 1.02em;
+}
+.index-table{
+    margin-top: 2%;
+}
+
+.index-delete{
+    color: #c0392b;
+    background-color: transparent;
+    border: none;
+    border: 1px solid #c0392b;
+    padding: 2%;
+    cursor: pointer;
+    font-size: .9em;
+}
+
+.index-delete:hover{
+    background-color: #c0392b;
+    color: #dfe6e9;
+    transition: all .7s;
+}
+
+.index-delete-screen{
+    background: #212121;
+    color: #dfe6e9;
+    padding: 2%;
+    position: fixed;
+    width: 70%;
+    left: 50%;
+    top: 5%;
+    z-index: 100;
+    transform: translate(-50%,0);
+}
+.index-delete-screen-after{
+    background-color: rgba(0, 0, 0, 0.7);
+    position: fixed;
+    left: 0;
+    top: 0;
+    height: 100%;
+    z-index: 1;
+    width: 100%;
+    
+}
+.index-delete-screen .index-delete-title{
+    background: #c0392b;
+    padding: 1% 2%;
+}
+.index-delete-screen *{
+    margin: 1% 0;
+}
+.index-add{
+    border:1px solid dodgerblue;
+    color: dodgerblue;
+    text-decoration: none;
+    padding: 2%;
+}
+
+.index-add:hover{
+    background: dodgerblue;
+    color: #dfe6e9;
+    transition: all .7s;
+}
+.index-bar{
+    display: flex;
+    text-align: center;
+    justify-content: space-between;
+    align-items: baseline;
 }

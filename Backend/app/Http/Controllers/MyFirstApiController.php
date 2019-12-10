@@ -21,7 +21,7 @@ class MyFirstApiController extends Controller
         ];
 
         $validator = Validator::make($request->all(), [
-            'name'=>'bail|required|regex:/^[a-záàâãéèêíïóôõöúçñ ]+$/',
+            'name'=>'bail|required|regex:/^[A-Za-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ ]+$/',
             'cpf'=>'bail|required|max:14|regex:/^\d{3}\.\d{3}\.\d{3}\-\d{2}$/',
             'active'=>'required'
         ],$messages);
@@ -32,11 +32,11 @@ class MyFirstApiController extends Controller
             $error = $validator->errors();
 
         }else{
-            $people = new People;
-            $people->name = $request->name;
-            $people->cpf = $request->cpf;
-            $people->active = $request->active;
-            $people->save();
+            $dados = new People;
+            $dados->name = $request->name;
+            $dados->active = $request->active;
+            $dados->cpf = $request->cpf;
+            $dados->save();
             $msg = "Obrigado por se cadastrar!";
             $error = 'any';
         }
@@ -45,5 +45,13 @@ class MyFirstApiController extends Controller
 
         return response()
                     ->json(["message"=>$msg,"error"=>$error],200);     
+    }
+
+    public function delete(Request $request){
+        $data = People::destroy($request->id);
+
+        return response()
+                ->json(["result"=>'deleted'],200);
+
     }
 }
