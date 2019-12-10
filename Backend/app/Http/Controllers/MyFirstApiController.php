@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\People;
+use Illuminate\Support\Facades\Validator;
 class MyFirstApiController extends Controller
 {
     public function index(){
@@ -14,15 +15,35 @@ class MyFirstApiController extends Controller
 
     }
 
-    public function create(Request $req){
-        $people = new People;
+    public function create(Request $request){
+        $messages = [
+            ":attribute",
+        ];
 
-        $people->name = $req->name;
-        $people->cpf = $req->cpf;
-        $people->active = $req->active;
-        $people->save();
+        $validator = Validator::make($request->all(), [
+            'name'=>'bail|required|regex:/^[a-záàâãéèêíïóôõöúçñ ]+$/',
+            'cpf'=>'bail|required|max:14|regex:/^\d{3}\.\d{3}\.\d{3}\-\d{2}$/',
+            'active'=>'required'
+        ],$messages);
+
+           
+        if ($validator->fails()){
+            $msg = "Algum dado está incorreto!";
+            $error = $validator->errors();
+
+        }else{
+            $people = new People;
+            $people->name = $request->name;
+            $people->cpf = $request->cpf;
+            $people->active = $request->active;
+            $people->save();
+            $msg = "Obrigado por se cadastrar!";
+            $error = 'any';
+        }
+
+        
 
         return response()
-                    ->json(["message"=>"Obrigado por se cadastrar!"]);
+                    ->json(["message"=>$msg,"error"=>$error],200);     
     }
 }

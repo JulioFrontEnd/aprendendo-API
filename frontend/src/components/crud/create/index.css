@@ -42,6 +42,17 @@
 }
 .CreateField{
     border-bottom: 1px solid #e17055;
-    padding:2% 0;
+    padding:2% 1%;
     margin-right: 4%;
+}
+
+.CreateError .CreateField{
+    border: none;
+    border: 1px solid #bd1c1c !important;
+    transition: all 1s;
+}
+
+.CreateErrorMessage{
+    color: #bd1c1c;
+    margin-top: 2%;
 }
