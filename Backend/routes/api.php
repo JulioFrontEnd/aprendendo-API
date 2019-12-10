@@ -20,3 +20,6 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::get('/test','MyFirstApiController@index');
 Route::put('/test/create','MyFirstApiController@create');
 Route::delete('/test/delete/{id}','MyFirstApiController@delete');
+Route::get('/test/disable/{id}','MyFirstApiController@disable');
+Route::get('/test/find/{id}','MyFirstApiController@find');
+Route::patch('/test/update','MyFirstApiController@update');

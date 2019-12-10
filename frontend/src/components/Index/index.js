@@ -32,15 +32,27 @@ export default class Index extends React.Component{
             <div>
                 <p><b>Nome:</b> {this.state.forDelete.name}</p>
                 <p><b>CPF:</b> {this.state.forDelete.cpf}</p>
+            </div>
+            <div className='btn-flex'>
                 <button onClick={this.realDelete} className='index-delete'>DELETAR</button>
+                <button onClick={this.disable} className='index-disable'>DESABILITAR</button>
             </div>
             </div>
             </div>
         });
     }
+
+    disable = async ()=>{
+        const id = await this.state.forDelete.id;
+        Dates.get('/disable/'+id).then(response=>{
+            this.dateBind();
+        });;
+        
+        this.setState({deleteScreen:<div></div>});
+    }
+
     realDelete = async ()=>{
         const id = await this.state.forDelete.id;
-        console.log(id);
         Dates.delete('/delete/'+id).then(response=>{
             this.dateBind();
         });;
@@ -75,7 +87,7 @@ export default class Index extends React.Component{
                                     <td className='index-table-value'>{i.id}</td>
                                     <td className='index-table-value'>{i.name}</td>
                                     <td className='index-table-value'>{i.cpf}</td>
-                                    <td className='index-table-value'><button onClick={()=>this.delete(i.id)} className='index-delete'>DELETAR</button></td>
+                                    <td className='index-table-value'><button onClick={()=>this.delete(i.id)} className='index-delete'>DELETAR</button><Link className='index-disable' to={'/update/'+i.id}>ALTERAR</Link></td>
                                 </tr>
                                 
                             );

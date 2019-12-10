@@ -35,7 +35,27 @@
     cursor: pointer;
     font-size: .9em;
 }
-
+.index-disable{
+    color: dodgerblue;
+    background-color: transparent;
+    border: none;
+    border: 1px solid dodgerblue;
+    padding: 2%;
+    margin-left: 2% !important;
+    text-decoration: none;
+    cursor: pointer;
+    font-size: .9em;
+}
+.btn-flex{
+    display: flex;
+    justify-content: flex-start;
+    align-items: baseline;
+}
+.index-disable:hover{
+    background-color: dodgerblue;
+    color: #dfe6e9;
+    transition: all .7s;
+}
 .index-delete:hover{
     background-color: #c0392b;
     color: #dfe6e9;
