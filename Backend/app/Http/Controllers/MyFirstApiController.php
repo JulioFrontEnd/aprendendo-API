@@ -4,9 +4,12 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\People;
+
 use Illuminate\Support\Facades\Validator;
 class MyFirstApiController extends Controller
 {
+
+
     public function index(){
         $data = People::all();
 
@@ -14,6 +17,8 @@ class MyFirstApiController extends Controller
                 ->json(["names"=>$data]);
 
     }
+
+    
 
     public function create(Request $request){
         $messages = [

@@ -1,6 +1,7 @@
 import React from 'react';
 import Dates from '../service';
 import './index.css';
+import Token from '../../../token';
 export default class Create extends React.Component{
     state={
         value:'',
@@ -8,6 +9,7 @@ export default class Create extends React.Component{
         valueCheck:true,
         message:"",
         input:'',
+        token:Token,
     }
     handleSubmit = (e)=>{
         e.preventDefault();
@@ -20,10 +22,11 @@ export default class Create extends React.Component{
 
     }
     submit = (name,cpf,active)=>{
-        Dates.put('/create',{
+        Dates.post('/create',{
             name:name,
             cpf:cpf,
             active:active,
+            api_token:this.state.token,
         }).then((response)=>{
             this.setState({message:response.data.message});
             if(typeof response.data.error.name !== 'undefined'){

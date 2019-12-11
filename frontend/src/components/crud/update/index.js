@@ -1,6 +1,7 @@
 import React from 'react';
 import '../create/index.css';
 import Dates from '../service';
+import Token from '../../../token';
 export default class Update extends React.Component{
     state={
         value:'',
@@ -8,6 +9,7 @@ export default class Update extends React.Component{
         valueCheck:true,
         message:"",
         input:'',
+        token:Token,
     }
 
     componentDidMount(){
@@ -16,7 +18,7 @@ export default class Update extends React.Component{
 
     find = ()=>{
         const {id} = this.props.match.params;
-        Dates.get('/find/'+id).then(Response=>this.setState({
+        Dates.post('/find/'+id,{api_token:this.state.token}).then(Response=>this.setState({
             value:Response.data.name,
             valueRegex:Response.data.cpf,
             valueCheck:((Response.data.active === 1)?true:false),
@@ -34,11 +36,12 @@ export default class Update extends React.Component{
 
     }
     submit = (name,cpf,active,id)=>{
-        Dates.patch('/update',{
+        Dates.post('/update',{
             name:name,
             cpf:cpf,
             active:active,
             id:id,
+            api_token:this.state.token,
         }).then((response)=>{
             this.setState({message:response.data.message});
             if(typeof response.data.error.name !== 'undefined'){

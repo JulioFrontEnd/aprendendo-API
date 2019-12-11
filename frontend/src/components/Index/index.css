@@ -95,6 +95,9 @@
     color: dodgerblue;
     text-decoration: none;
     padding: 2%;
+    margin-left: 2%;
+    font-weight: 500;
+    font-size: 1.2em;
 }
 
 .index-add:hover{
@@ -107,4 +110,7 @@
     text-align: center;
     justify-content: space-between;
     align-items: baseline;
+}
+.index-options{
+    width: 25%;
 }

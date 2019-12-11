@@ -1,19 +1,23 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
 import Dates from './dates';
+import Token from '../../token';
 import "./index.css";
 export default class Index extends React.Component{
     state={
         value:[],
         forDelete:[],
         deleteScreen:<div></div>,
+        token:Token,
     }
     componentDidMount(){
         this.dateBind();
     }
 
     dateBind = async ()=>{
-        const item = await Dates.get();
+        const item = await Dates.post("",{
+            api_token:this.state.token
+        });
         this.setState({value: item.data.names});
     }
     delete = async (id)=>{
@@ -44,7 +48,7 @@ export default class Index extends React.Component{
 
     disable = async ()=>{
         const id = await this.state.forDelete.id;
-        Dates.get('/disable/'+id).then(response=>{
+        Dates.post('/disable/'+id,{api_token:this.state.token}).then(response=>{
             this.dateBind();
         });;
         
@@ -53,7 +57,7 @@ export default class Index extends React.Component{
 
     realDelete = async ()=>{
         const id = await this.state.forDelete.id;
-        Dates.delete('/delete/'+id).then(response=>{
+        Dates.post('/delete/'+id,{api_token:this.state.token}).then(response=>{
             this.dateBind();
         });;
         
@@ -66,7 +70,10 @@ export default class Index extends React.Component{
                 {this.state.deleteScreen}
                 <div className='index-bar'>
                     <h3>DADOS: </h3>
-                    <Link to="/add" className='index-add'>ADD</Link>
+                    <div className='index-options'>
+                        {((this.state.token === 'Not Logged')?<Link to='/login' className='index-add'>LOGIN</Link>:<Link to='/logout' className='index-add'>SAIR</Link>)}
+                        <Link to="/add" className='index-add'>ADD</Link>
+                    </div>
                 </div>
                 <div>
                     <table className='index-table'>
